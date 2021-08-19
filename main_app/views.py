@@ -10,3 +10,6 @@ class Home(TemplateView):
 
 class Profile(TemplateView):
     template_name = "profile.html"
+
+class About(TemplateView):
+    template_name = "about.html"
