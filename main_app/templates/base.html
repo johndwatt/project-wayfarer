@@ -12,6 +12,71 @@
     <title>Project Wayfarer</title>
 </head>
 <body>
+<!-- header -->
+<!-- navbar -->
+
+<nav class="navbar navbar-inverse navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+            <img src="#" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            Bootstrap
+          </a>
+      </div>
+      <!-- flex me -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#signup-modal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
  {% block content %} {% endblock %}
+
+<!-- popups -->
+  
+<!-- Login Modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Log in</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form action="">
+                <input type="text">
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Log in</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signup-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Sign up</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="">
+                  <input type="text">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">Create Account</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  
+
 </body>
 </html>
