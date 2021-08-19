@@ -38,4 +38,12 @@ class Profile(TemplateView):
 class About(TemplateView):
     template_name = "about.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['login_form'] = AuthenticationForm()
+        context['signup_form'] = UserCreationForm()
+        return context
 
+
+class PostDetail(TemplateView):
+    template_name = "post_detail.html"
