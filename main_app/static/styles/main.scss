@@ -13,28 +13,46 @@ body{
 .navbar{
     
     background-color: $nav-peach;
-    color:black;
+    color:rgb(0, 0, 0);
 
-    a{
+
+    .navbar-header{
+        padding-left: 1.5em;
+    }
+
+   .title{
+    font-size: 1.5em;
+    color: black;
+    margin-right: 28em;
+   }
+
+   .nav.navbar-nav.navbar-right a{
         
         display: inline-block;
         margin-left: 10px;
         font-size: 20px;
         outline:none;
         text-align: center;
-        width: 8em;
+        width: 5em;
         border-radius:40px;
         background: $skin-peach;
         border: 1px solid $skin-peach;
         color:black;
         letter-spacing:1px;
         text-shadow:0;
-        padding: 5px 6px 5px 6px;
+        padding: 3px 4px 3px 4px;
         text-decoration: none;
+
+        &:hover{
+            background: black;
+            color:$skin-peach;
+            transition:300ms ease-in-out;
+        }
     }
-    .navbar-header{
-        padding-top: 20px;
-    }
+    
+    // .navbar-header{
+    //     padding-top: 5px;
+    // }
 }
 
 .d-inline-block.align-text-top.logo{
