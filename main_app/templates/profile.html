@@ -3,47 +3,70 @@
 <h1> You made it to your profile</h1>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="profile card" style="width: 18rem;">
-                <img src="{{ user.profile.image }}" class="card-img-top" alt="{{ user.first_name }}">
-                <div class="card-body">
-                  <h5 class="card-title">{{ user.first_name }} {{ user.last_name}}</h5>
-                  <p class="card-text">{{ user.profile.current_city }}</p>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="profile card" style="width: 18rem;">
+        <img src="{{ user.profile.image }}" class="card-img-top" alt="{{ user.first_name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ user.first_name }} {{ user.last_name}}</h5>
+          <p class="card-text">{{ user.profile.current_city }}</p>
+          <button><a href="#" data-bs-toggle="modal" data-bs-target="#update-modal">Edit</a></button>
         </div>
-        <div class="col-md-6">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                  <div class="col-sm-4">
-                    <img src="https://source.unsplash.com/SBiVq9eWEtQ" class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-sm-8">
-                    <div class="card-body">
-                      <h5 class="card-title">Post title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted">Last updated ADD LINK HERE</small></p>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                  <div class="col-sm-4">
-                    <img src="https://source.unsplash.com/SBiVq9eWEtQ" class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-sm-8">
-                    <div class="card-body">
-                      <h5 class="card-title">Post title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted">Last updated ADD LINK HERE</small></p>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col-md-6">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-sm-4">
+            <img src="https://source.unsplash.com/SBiVq9eWEtQ" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-sm-8">
+            <div class="card-body">
+              <h5 class="card-title">Post title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated ADD LINK HERE</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-sm-4">
+            <img src="https://source.unsplash.com/SBiVq9eWEtQ" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-sm-8">
+            <div class="card-body">
+              <h5 class="card-title">Post title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated ADD LINK HERE</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="update-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form method='POST' enctype="multipart/form-data" action="{% url 'profile_update'%}">
+          {%csrf_token%}
+          {{user_update_form.as_p}}
+          {{profile_update_form.as_p}}
+          <button type='submit'>Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

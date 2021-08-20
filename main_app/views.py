@@ -7,7 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from django.contrib.auth import login
 from django.http import HttpResponse
-from .forms import UserCreationForm, ProfileForm
+from .forms import UserCreationForm, ProfileForm, UserUpdateForm, ProfileUpdateForm
 
 
 # Create your views here.
@@ -25,7 +25,7 @@ class Home(TemplateView):
     def post(self, request):
         form = UserCreationForm(request.POST)
         profile_form = ProfileForm(request.POST)
-        
+
         if form.is_valid() and profile_form.is_valid():
             user = form.save()
 
@@ -42,17 +42,90 @@ class Home(TemplateView):
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")    
+        fields = ("username", "email", "password1", "password2")
 
 
 class Profile(TemplateView):
     template_name = "profile.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_update_form'] = UserUpdateForm()
+        context['profile_update_form'] = ProfileUpdateForm()
+        return context
+
+    # def profile_update(request):
+    #     if request.method == 'POST':
+    #         p_form = ProfileUpdateForm(
+    #             request.POST, request.FILES, instance=request.user.profile)
+    #         u_form = UserUpdateForm(request.POST, instance=request.user)
+    #         if p_form.is_valid() and u_form.is_valid():
+    #             u_form.save()
+    #             p_form.save()
+
+    #             return redirect('profile')
+    #     else:
+    #         p_form = ProfileUpdateForm(instance=request.user)
+    #         u_form = UserUpdateForm(instance=request.user.profile)
+
+    #     context = {'p_form': p_form, 'u_form': u_form}
+    #     return render(request, 'profile.html', context)
+    def profile_update(self, request):
+        p_form = ProfileUpdateForm(
+            request.POST)
+        u_form = UserUpdateForm(request.POST)
+
+        if p_form.is_valid() and u_form.is_valid():
+            u_form.save()
+            p_form.save()
+
+            return redirect("profile")
+        else:
+            p_form = ProfileUpdateForm()
+            u_form = UserUpdateForm()
+
+        context = {"user_update_form": u_form,
+                   "profile_update_form": p_form}
+        return render(request, "profile.html", context)
+
 
 class ProfileUpdate(UpdateView):
     model = Profile
-    fields = ['name',]
+    fields = ['current_city', 'image', 'first_name', 'last_name']
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_update_form'] = UserUpdateForm()
+        context['profile_update_form'] = ProfileUpdateForm()
+        return context
+
+    def profile_update(self, request):
+        p_form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user.profile)
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+
+        if p_form.is_valid() and u_form.is_valid():
+            u_form.save()
+            p_form.save()
+
+            return redirect("profile")
+        else:
+            p_form = ProfileUpdateForm(instance=request.user)
+            u_form = UserUpdateForm(instance=request.user.profile)
+
+        context = {"user_update_form": u_form,
+                   "profile_update_form": p_form}
+        return render(request, "profile.html", context)
+
+
+# class ArtistUpdate(UpdateView):
+#     model = Artist
+#     fields = ['name', 'img', 'bio', 'verified_artist']
+#     template_name = 'artist_update.html'
+
+#     def get_success_url(self):
+#         # go to /artists/pk
+#         return reverse("artist_detail", kwargs={'pk': self.object.pk})
 
 class About(TemplateView):
     template_name = "about.html"
@@ -66,6 +139,7 @@ class About(TemplateView):
 
 class PostDetail(TemplateView):
     template_name = "post_detail.html"
+
 
 """ class UserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Email')
