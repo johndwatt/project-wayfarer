@@ -9,24 +9,34 @@ body {
   background-color: #fbf3eb;
   color: black;
 }
-.navbar a {
+.navbar .navbar-header {
+  padding-left: 1.5em;
+}
+.navbar .title {
+  font-size: 1.5em;
+  color: black;
+  margin-right: 28em;
+}
+.navbar .nav.navbar-nav.navbar-right a {
   display: inline-block;
   margin-left: 10px;
   font-size: 20px;
   outline: none;
   text-align: center;
-  width: 8em;
+  width: 5em;
   border-radius: 40px;
   background: #e7c4b1;
   border: 1px solid #e7c4b1;
   color: black;
   letter-spacing: 1px;
   text-shadow: 0;
-  padding: 5px 6px 5px 6px;
+  padding: 3px 4px 3px 4px;
   text-decoration: none;
 }
-.navbar .navbar-header {
-  padding-top: 20px;
+.navbar .nav.navbar-nav.navbar-right a:hover {
+  background: black;
+  color: #e7c4b1;
+  transition: 300ms ease-in-out;
 }
 
 .d-inline-block.align-text-top.logo {
