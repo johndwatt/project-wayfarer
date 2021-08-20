@@ -35,7 +35,7 @@ class Home(TemplateView):
             profile.save()
 
             login(request, user)
-            return redirect("profile")
+            return redirect("/profile/")
         else:
             context = {"signup_form": form, "profile_form": profile_form}
             return render(request, "home.html", context)
@@ -44,6 +44,10 @@ class Home(TemplateView):
         model = User
         fields = ("username", "email", "password1", "password2")
 
+
+class ProfileRedirect(View):
+    def get(self, request):
+        return redirect(f"/profile/{request.user.profile.pk}")
 
 class ProfileDetail(TemplateView):
     template_name = "profile.html"
@@ -54,16 +58,15 @@ class ProfileDetail(TemplateView):
         context['profile_update_form'] = ProfileUpdateForm()
         return context
 
-    def profile_update(self, request):
-        p_form = ProfileUpdateForm(
-            request.POST, instance=request.user.profile)
+    def post(self, request, pk):
+        p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
         u_form = UserUpdateForm(request.POST, instance=request.user)
 
         if p_form.is_valid() and u_form.is_valid():
             u_form.save()
             p_form.save()
 
-            return redirect("profile")
+            return redirect("/profile/")
         else:
             p_form = ProfileUpdateForm(instance=request.user)
             u_form = UserUpdateForm(instance=request.user.profile)
