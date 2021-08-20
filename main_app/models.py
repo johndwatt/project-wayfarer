@@ -1,16 +1,17 @@
 from django.db import models
 from django.db.models import CharField, TextField, ForeignKey, DateTimeField, Model
 from django.contrib.auth.models import User
+from django.db.models.base import ModelState
 
 
-class Profile(Model):
+class Profile(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     current_city = CharField(max_length=100, default="NA")
     image = CharField(max_length=500)
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
 
 class City(Model):

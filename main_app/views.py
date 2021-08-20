@@ -3,10 +3,11 @@ from django.views import View
 from .models import User
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from django.contrib.auth import login
 from django.http import HttpResponse
+from .forms import UserCreationForm, ProfileForm
 
 
 # Create your views here.
@@ -18,17 +19,25 @@ class Home(TemplateView):
         context = super().get_context_data(**kwargs)
         context['login_form'] = AuthenticationForm()
         context['signup_form'] = UserCreationForm()
+        context['profile_form'] = ProfileForm()
         return context
 
     def post(self, request):
         form = UserCreationForm(request.POST)
+        profile_form = ProfileForm(request.POST)
         
-        if form.is_valid():
+        if form.is_valid() and profile_form.is_valid():
             user = form.save()
+
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            profile.save()
+
             login(request, user)
             return redirect("profile")
         else:
-            context = {"signup_form": form}
+            context = {"signup_form": form, "profile_form": profile_form}
             return render(request, "home.html", context)
 
     class Meta:
@@ -58,7 +67,7 @@ class About(TemplateView):
 class PostDetail(TemplateView):
     template_name = "post_detail.html"
 
-class UserCreationForm(UserCreationForm):
+""" class UserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Email')
 
     class Meta:
@@ -70,4 +79,4 @@ class UserCreationForm(UserCreationForm):
         user.email = self.cleaned_data["email"]
         if commit:
             user.save()
-        return user
+        return user """
