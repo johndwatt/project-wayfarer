@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import Home, About, PostDetail, ProfileDetail
+from .views import Home, About, PostDetail, ProfileDetail, ProfileRedirect
 
 urlpatterns = [
     path('', Home.as_view(), name="home"),
+    path('profile/', ProfileRedirect.as_view(), name="profile_redirect"),
     path('profile/<int:pk>/', ProfileDetail.as_view(), name="profile"),
     path('profile/<int:pk>/update/',
          ProfileDetail.as_view(), name="profile_update"),
