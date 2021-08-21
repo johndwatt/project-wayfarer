@@ -16,8 +16,8 @@
     crossorigin="anonymous"></script>
   <script src="{% static 'scripts/main.js' %}" defer></script>
   <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
-  <!-- make a block for styling so you can customize for each page - DTL-->
-  <link rel="stylesheet" href="{% static 'styles/profile.css' %}" />
+  {% block styles %}
+  {% endblock %}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <title>Project Wayfarer</title>
 </head>

@@ -3,7 +3,12 @@
 }
 
 div.modal-content {
-    background-color: red;
+    background-color: #fbf3eb;
+}
+
+.cust-button.btn {
+    background-color: #e7c4b1;
+    border-radius: 30px;
 }
 
 @media (min-width: 400px) {

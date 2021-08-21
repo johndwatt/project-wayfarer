@@ -1,4 +1,10 @@
-{% extends 'base.html'%} {% block content %}
+{% extends 'base.html'%} {% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/post.css' %}" />
+{% endblock %}
+
+{% block content %}
 
 <h1 class="m-5 mt-3">{{post.title}}</h1>
 
@@ -8,7 +14,7 @@
             <div class="card mb-3" style="max-width: 1040px;">
                 <div class="row g-0">
                     <div class="col-sm-4 d-flex"  style="align-items: center;">
-                        <img src="{{user.profile.image}}" class="img-fluid mt-2 mb-2 rounded" alt="{{user.username}}">
+                        <img src="{{user.profile.image}}" class="img-fluid mt-3 mb-3 rounded" alt="{{user.username}}">
                     </div>
                     <div class="col-sm-8">
                         <div class="card-body">
