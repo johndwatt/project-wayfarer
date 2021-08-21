@@ -3,6 +3,6 @@
     {% csrf_token %} 
     {{ signup_form.as_p }}
     {{ profile_form.as_p }}
-    <input type="submit" class="btn btn-primary" value="Submit"/>
+    <input type="submit" class="btn" style="background-color: #e7c4b1; border-radius: 30px;" value="Submit"/>
     <input type="hidden" name="text" value="{{ next }}"/>
 </form>

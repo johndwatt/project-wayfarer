@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import User, Profile
+from .models import User, Profile, Post
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
+from django.views.generic import DetailView
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from django.contrib.auth import login
@@ -56,6 +57,7 @@ class ProfileDetail(TemplateView):
         context = super().get_context_data(**kwargs)
         context['user_update_form'] = UserUpdateForm()
         context['profile_update_form'] = ProfileUpdateForm()
+        context['posts'] = Post.objects.filter(user=self.request.user)
         return context
 
     def post(self, request, pk):
@@ -75,60 +77,6 @@ class ProfileDetail(TemplateView):
                        "profile_update_form": p_form}
             return render(request, "profile.html", context)
 
-    # def profile_update(request):
-    #     if request.method == 'POST':
-    #         p_form = ProfileUpdateForm(
-    #             request.POST, request.FILES, instance=request.user.profile)
-    #         u_form = UserUpdateForm(request.POST, instance=request.user)
-    #         if p_form.is_valid() and u_form.is_valid():
-    #             u_form.save()
-    #             p_form.save()
-
-    #             return redirect('profile')
-    #     else:
-    #         p_form = ProfileUpdateForm(instance=request.user)
-    #         u_form = UserUpdateForm(instance=request.user.profile)
-
-    #     context = {'p_form': p_form, 'u_form': u_form}
-    #     return render(request, 'profile.html', context)
-    # def profile_update(self, request):
-    #     p_form = ProfileUpdateForm(
-    #         request.POST)
-    #     u_form = UserUpdateForm(request.POST)
-
-    #     if p_form.is_valid() and u_form.is_valid():
-    #         u_form.save()
-    #         p_form.save()
-
-    #         return redirect("profile")
-    #     else:
-    #         p_form = ProfileUpdateForm()
-    #         u_form = UserUpdateForm()
-
-    #     context = {"user_update_form": u_form,
-    #                "profile_update_form": p_form}
-    #     return render(request, "profile.html", context)
-
-
-# class ProfileUpdate(UpdateView):
-#     model = Profile
-#     fields = ['current_city', 'image', 'first_name', 'last_name']
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['user_update_form'] = UserUpdateForm()
-#         context['profile_update_form'] = ProfileUpdateForm()
-#         return context
-
-
-# class ArtistUpdate(UpdateView):
-#     model = Artist
-#     fields = ['name', 'img', 'bio', 'verified_artist']
-#     template_name = 'artist_update.html'
-
-#     def get_success_url(self):
-#         # go to /artists/pk
-#         return reverse("artist_detail", kwargs={'pk': self.object.pk})
 
 class About(TemplateView):
     template_name = "about.html"
@@ -140,20 +88,13 @@ class About(TemplateView):
         return context
 
 
-class PostDetail(TemplateView):
+class PostDetail(DetailView):
+    model = Post
     template_name = "post_detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.all()
+        return context
 
-""" class UserCreationForm(UserCreationForm):
-    email = forms.EmailField(required=True, label='Email')
 
-    class Meta:
-        model = User
-        fields = ("username", "first_name", "last_name", "email", "password1", "password2")
-
-    def save(self, commit=True):
-        user = super(UserCreationForm, self).save(commit=False)
-        user.email = self.cleaned_data["email"]
-        if commit:
-            user.save()
-        return user """
