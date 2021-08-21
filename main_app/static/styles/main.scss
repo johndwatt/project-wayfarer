@@ -16,14 +16,14 @@ body{
     color:rgb(0, 0, 0);
 
 
-    .navbar-header{
-        padding-left: 1.5em;
+    .navbar-brand{
+        padding-left: 1.2em;
+        font-size: 35px;
+        color: black;
     }
 
-   .title{
-    font-size: 1.5em;
-    color: black;
-    margin-right: 28em;
+   .navbar-right{
+       padding-right: 1.5em;
    }
 
    .nav.navbar-nav.navbar-right a{
@@ -36,12 +36,13 @@ body{
         width: 5em;
         border-radius:40px;
         background: $skin-peach;
-        border: 1px solid $skin-peach;
+        
         color:black;
         letter-spacing:1px;
         text-shadow:0;
         padding: 3px 4px 3px 4px;
         text-decoration: none;
+        
 
         &:hover{
             background: black;
@@ -63,3 +64,9 @@ body{
 .nav.navbar-nav.navbar-right{
     flex-direction: row;
 }
+.container-md {
+     background-color: #D2E9CE; 
+     padding: 15px;
+     border-radius: 30px;
+    
+    }

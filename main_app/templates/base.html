@@ -23,41 +23,45 @@
 <body>
   <!-- header -->
   <!-- navbar -->
-
   <nav class="navbar">
-    <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="../static/styles/logo.png" width="50" height="50" class="d-inline-block align-top" alt="">
+      Wayfarer
+    </a>
 
-      <div class="navbar-header">
+    <!-- <nav class="navbar">
 
-        <div><img src="../static/styles/logo.svg" alt="" width="60" height="60"
-            class="d-inline-block align-text-top logo"></div>
+
+
+    <a class=" navbar-brand" href="{% url 'home' %}">
+      <div><img src="../static/styles/logo.png" width="30" height="30" class="d-inline-block align-top" alt="""></div>
       </div>
 
-      <a class="navbar-brand" href="{% url 'home' %}">
-        <div class="title">Wayfarer</div>
-      </a>
+    
+          <div class=" title">Wayfarer</div>
+    </a> -->
 
 
 
 
-      <!-- flex me -->
-      {% if user.is_authenticated %}
+    <!-- flex me -->
+    {% if user.is_authenticated %}
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'about' %}">About</a></li>
-        <li><a class="select" href="{% url 'profile' user.pk %}">{{user.username}} </a> </li>
-        <li><a class="select" href="{% url 'logout' %}"> Logout </a></li>
-      </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'about' %}">About</a></li>
+      <li><a class="select" href="{% url 'profile' user.pk %}">{{user.username}} </a> </li>
+      <li><a class="select" href="{% url 'logout' %}"> Logout </a></li>
+    </ul>
 
-      {% else %}
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'about' %}">About</a></li>
-        <li><a class="select" href="#" data-bs-toggle="modal" data-bs-target="#login-modal"><span
-              class="glyphicon glyphicon-user">Login</span></a></li>
-        <li><a class="select" href="#" data-bs-toggle="modal" data-bs-target="#signup-modal">Sign Up</a></li>
-      </ul>
+    {% else %}
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'about' %}">About</a></li>
+      <li><a class="select" href="#" data-bs-toggle="modal" data-bs-target="#login-modal"><span
+            class="glyphicon glyphicon-user">Login</span></a></li>
+      <li><a class="select" href="#" data-bs-toggle="modal" data-bs-target="#signup-modal">Sign Up</a></li>
+    </ul>
 
-      {% endif %}
+    {% endif %}
     </div>
   </nav>
 

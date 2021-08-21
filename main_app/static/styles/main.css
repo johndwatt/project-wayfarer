@@ -9,13 +9,13 @@ body {
   background-color: #fbf3eb;
   color: black;
 }
-.navbar .navbar-header {
-  padding-left: 1.5em;
-}
-.navbar .title {
-  font-size: 1.5em;
+.navbar .navbar-brand {
+  padding-left: 1.2em;
+  font-size: 35px;
   color: black;
-  margin-right: 28em;
+}
+.navbar .navbar-right {
+  padding-right: 1.5em;
 }
 .navbar .nav.navbar-nav.navbar-right a {
   display: inline-block;
@@ -26,7 +26,6 @@ body {
   width: 5em;
   border-radius: 40px;
   background: #e7c4b1;
-  border: 1px solid #e7c4b1;
   color: black;
   letter-spacing: 1px;
   text-shadow: 0;
@@ -46,6 +45,12 @@ body {
 
 .nav.navbar-nav.navbar-right {
   flex-direction: row;
+}
+
+.container-md {
+  background-color: #D2E9CE;
+  padding: 15px;
+  border-radius: 30px;
 }
 
 /*# sourceMappingURL=main.css.map */
