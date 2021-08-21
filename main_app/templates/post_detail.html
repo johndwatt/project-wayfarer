@@ -1,14 +1,14 @@
 {% extends 'base.html'%} {% block content %}
 
-<h1 class="m-3">{{post.title}}</h1>
+<h1 class="m-5 mt-3">{{post.title}}</h1>
 
 <main class="post-page m-3">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="card mb-3" style="max-width: 1040px;">
                 <div class="row g-0">
-                    <div class="col-sm-4">
-                        <img src="{{user.profile.image}}" class="img-fluid mt-2 mb-2 rounded-start" alt="{{user.username}}">
+                    <div class="col-sm-4 d-flex"  style="align-items: center;">
+                        <img src="{{user.profile.image}}" class="img-fluid mt-2 mb-2 rounded" alt="{{user.username}}">
                     </div>
                     <div class="col-sm-8">
                         <div class="card-body">

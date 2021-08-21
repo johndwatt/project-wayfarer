@@ -8,7 +8,7 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     current_city = CharField(max_length=100, default="NA")
-    image = CharField(max_length=500)
+    image = CharField(max_length=500, default="")
 
     def __str__(self):
         return self.user.username
