@@ -1,20 +1,22 @@
 {% extends 'base.html'%} {% block content %}
 
-<main class="post-page m-5">
+<h1 class="m-3">{{post.title}}</h1>
+
+<main class="post-page m-3">
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-6">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
+            <div class="card mb-3" style="max-width: 1040px;">
+                <div class="row g-0">
                     <div class="col-sm-4">
-                        <img src="https://source.unsplash.com/SBiVq9eWEtQ" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-sm-8">
-                    <div class="card-body">
-                    <h5 class="card-title">Post title</h5>
-                    <p class="card-text">User Name here</p>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated ADD LINK HERE</small></p>
+                        <img src="{{user.profile.image}}" class="img-fluid mt-2 mb-2 rounded-start" alt="{{user.username}}">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{post.title}}</h5>
+                            <p class="card-text">{{user.username}}</p>
+                            <p class="card-text">{{post.content}}</p>
+                            <p class="card-text"><small class="text-muted">{{post.created_at}}</small></p>
+                        </div>
                     </div>
                 </div>
             </div>
