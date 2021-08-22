@@ -6,8 +6,12 @@
 
 {% block content %}
 
-<h1 class="m-5 mt-3">{{post.title}}</h1>
+<h1 class="m-5 mt-3">{{city.name}}</h1>
 
+
+
+
+{% for post in city.posts.all %}
 <main class="post-page m-3">
     <div class="container">
         <div class="row d-flex justify-content-center">
@@ -29,6 +33,6 @@
         </div>
     </div>
 </main>
+{% endfor %}
 
 {% endblock %}
-
