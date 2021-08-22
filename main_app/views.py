@@ -109,3 +109,6 @@ class CityDetail(DetailView):
         return context
 
 
+class CityPostRedirect(View):
+    def get(self, request, pk, post_pk):
+        return redirect("post_detail", pk=post_pk)
