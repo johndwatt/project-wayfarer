@@ -45,4 +45,4 @@ class ProfileUpdateForm(forms.ModelForm):
 class PostCreationForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('city', 'title', 'content')
+        fields = ('city', 'user', 'title', 'content')

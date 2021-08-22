@@ -20,7 +20,7 @@
     </div>
 </section>
 
-<h2>Posts</h2><button class="btn btn-primary" type="submit">New Post</button>
+<h2>Posts</h2><button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#post-create-modal">New Post</button>
 {% for post in city.posts.all %}
 <main class="post-page m-3">
     <div class="container">
@@ -56,5 +56,24 @@
     </div>
 </main>
 {% endfor %}
+
+<div class="modal fade" id="post-create-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="{% url 'post_new' city.pk %}">
+                {% csrf_token %} 
+                {{ post_create_form.as_p }}
+                <input type="submit" class="btn" style="background-color: #e7c4b1; border-radius: 30px;" value="Create Post"/>
+                <input type="hidden" name="text" value="{{ next }}"/>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

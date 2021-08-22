@@ -107,7 +107,7 @@ class CityDetail(DetailView):
         context['post_create_form'] = PostCreationForm()
         return context
 
-    def post(self, request, pk, post_pk):
+    def post(self, request, pk):
         post_c_form = PostCreationForm(request.POST)
 
         if post_c_form.is_valid():
