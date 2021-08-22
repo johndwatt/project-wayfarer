@@ -14,12 +14,12 @@
             <div class="card mb-3" style="max-width: 1040px;">
                 <div class="row g-0">
                     <div class="col-sm-4 d-flex"  style="align-items: center;">
-                        <img src="{{user.profile.image}}" class="img-fluid mt-3 mb-3 rounded" alt="{{user.username}}">
+                        <img src="{{post.user.profile.image}}" class="img-fluid mt-3 mb-3 rounded" alt="{{user.username}}">
                     </div>
                     <div class="col-sm-8">
                         <div class="card-body">
                             <h5 class="card-title">{{post.title}}</h5>
-                            <p class="card-text">{{user.username}}</p>
+                            <p class="card-text">{{post.user}}</p>
                             <p class="card-text">{{post.content}}</p>
                             <p class="card-text"><small class="text-muted">{{post.created_at}}</small></p>
                         </div>

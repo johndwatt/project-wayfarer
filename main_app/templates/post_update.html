@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<h1 class="m-5 mt-3">Update your post '{{post.title}}'</h1>
+
+<form method="post" action="{% url 'post_update' post.pk %}">
+    {% csrf_token %} 
+    {{ form.as_p }}
+    <input type="submit" class="btn" style="background-color: #e7c4b1; border-radius: 30px;" value="Update Post"/>
+    <input type="hidden" name="text" value="{{ next }}"/>
+</form>
+
+{% endblock %}
