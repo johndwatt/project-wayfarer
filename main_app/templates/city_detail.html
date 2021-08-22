@@ -7,35 +7,41 @@
 {% block content %}
 
 <section>
-    <div class="container">
-        <div class="row justify-content-center mt-5">
-            <div class="col-4 pr-0" >
+    <div class="container" style="max-width: 1000px;">
+        <div class="d-flex justify-content-between mt-5">
+            <div class="col-6" >
                 <h1>{{city.name}}</h1>
                 <h3>{{city.country}}</h3>
             </div>
-            <div class="col-4">
+            <div class="col-6">
                 <img src="https://images.unsplash.com/photo-1624236028842-88acfd4e5287?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1411&q=80" class="card-img-top rounded" alt="{{city.name}}">
             </div>
         </div>
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <h2>Posts</h2>
+            <button class="cust-button btn" type="submit" data-bs-toggle="modal" data-bs-target="#post-create-modal">New Post</button>
+        </div>
+        
     </div>
+
 </section>
 
-<h2>Posts</h2><button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#post-create-modal">New Post</button>
+
 {% for post in city.posts.all %}
 <main class="post-page m-3">
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="card mb-3" style="max-width: 700px;">
+            <div class="card mb-3" style="max-width: 1000px;">
                 <div class="row g-0">
-                    <div class="col-sm-4 d-flex"  style="align-items: center;">
-                        <img src="{{post.user.profile.image}}" class="img-fluid my-3 mx-4 rounded" style="max-height: 200px; max-width: 200px;" alt="{{user.username}}">
+                    <div class="col-md-4 d-flex justify-content-center"  style="align-items: center;">
+                        <img src="{{post.user.profile.image}}" class="img-fluid my-3 mx-3 rounded" style="max-height: 200px; max-width: 200px;" alt="{{user.username}}">
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-md-8">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <h5 class="card-title"><a style="color: black;" href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h5>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button type="button" class="cust-button btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                           Action
                                         </button>
                                         <ul class="dropdown-menu">
