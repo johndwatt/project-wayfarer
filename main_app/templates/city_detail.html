@@ -32,23 +32,23 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="card-body">
-                            <h5 class="card-title">{{post.title}}</h5>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title"><a style="color: black;" href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h5>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                          Action
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                          <li><a class="dropdown-item" href="{% url 'post_update' post.pk %}">Edit</a></li>
+                                          <li><hr class="dropdown-divider"></li>
+                                          <li><a class="dropdown-item" href="#">Delete</a></li>
+                                        </ul>
+                                    </div>
+                            </div>
                             <p class="card-text">{{post.user}}</p>
                             <p class="card-text">{{post.content}}</p>
                             <p class="card-text"><small class="text-muted">{{post.created_at}}</small></p>
                         </div>
-                    </div>
-                    <div class="col-sm-8 m-3">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                              Action
-                            </button>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Edit</a></li>
-                              <li><hr class="dropdown-divider"></li>
-                              <li><a class="dropdown-item" href="#">Delete</a></li>
-                            </ul>
-                          </div>
                     </div>
                 </div>
             </div>
@@ -75,5 +75,6 @@
       </div>
     </div>
   </div>
+
 
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 from .models import User, Profile, Post, City
 from django.views.generic.base import TemplateView
@@ -96,6 +97,14 @@ class PostDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['posts'] = Post.objects.all()
         return context
+
+class PostUpdate(UpdateView):
+    model = Post
+    fields = ['city', 'title', 'content']
+    template_name = 'post_update.html'
+
+    def get_success_url(self):
+        return reverse("post_detail", kwargs={'pk': self.object.pk})
 
 class CityDetail(DetailView):
     model = City
