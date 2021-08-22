@@ -12,4 +12,5 @@ urlpatterns = [
     path('post/<int:pk>', PostDetail.as_view(), name="post_detail"),
     path('cities/<int:pk>/', CityDetail.as_view(), name="city_detail"),
     path('cities/<int:pk>/post/<int:post_pk>/', CityPostRedirect.as_view(), name="city_post_redirect"),
+    path('cities/<int:pk>/post/<int:post_pk>/update', CityDetail.as_view(), name="post_update"),
 ]

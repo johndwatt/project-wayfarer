@@ -1,0 +1,19 @@
+
+    <div class="modal fade" id="post-create-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'post_update' %}">
+                    {% csrf_token %} 
+                    {{ post_create_form.as_p }}
+                    <input type="submit" class="btn" style="background-color: #e7c4b1; border-radius: 30px;" value="Create Post"/>
+                    <input type="hidden" name="text" value="{{ next }}"/>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
