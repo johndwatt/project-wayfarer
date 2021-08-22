@@ -116,7 +116,9 @@ class CityDetail(DetailView):
             return redirect(f"/cities/{pk}")
         else:
 
-            context = {"post_create_form": post_c_form}
+            context = {
+                "post_create_form": post_c_form
+                }
             return render(request, "city_detail.html", context)
 
 class CityPostRedirect(View):
