@@ -101,3 +101,11 @@ class CityDetail(DetailView):
     model = City
     template_name = "city_detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.all()
+        # context['profile'] = Profile.objects.all()
+        # context['user'] = User.objects.all()
+        return context
+
+
