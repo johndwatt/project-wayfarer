@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 from .models import User, Profile, Post, City
 from django.views.generic.base import TemplateView
@@ -8,7 +9,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from django.contrib.auth import login
 from django.http import HttpResponse
-from .forms import UserCreationForm, ProfileForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserCreationForm, ProfileForm, UserUpdateForm, ProfileUpdateForm, PostCreationForm
 
 
 # Create your views here.
@@ -97,15 +98,38 @@ class PostDetail(DetailView):
         context['posts'] = Post.objects.all()
         return context
 
+class PostUpdate(UpdateView):
+    model = Post
+    fields = ['city', 'title', 'content']
+    template_name = 'post_update.html'
+
+    def get_success_url(self):
+        return reverse("post_detail", kwargs={'pk': self.object.pk})
+
 class CityDetail(DetailView):
     model = City
     template_name = "city_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['posts'] = Post.objects.all()
-        # context['profile'] = Profile.objects.all()
-        # context['user'] = User.objects.all()
+        context['posts'] = Post.objects.all()        
+        context['post_create_form'] = PostCreationForm()
         return context
 
+    def post(self, request, pk):
+        post_c_form = PostCreationForm(request.POST)
 
+        if post_c_form.is_valid():
+            post_c_form.save()
+
+            return redirect(f"/cities/{pk}")
+        else:
+
+            context = {
+                "post_create_form": post_c_form
+                }
+            return render(request, "city_detail.html", context)
+
+class CityPostRedirect(View):
+    def get(self, request, pk, post_pk):
+        return redirect("post_detail", pk=post_pk)
