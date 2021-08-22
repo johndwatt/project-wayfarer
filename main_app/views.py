@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import User, Profile, Post
+from .models import User, Profile, Post, City
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView
@@ -97,4 +97,7 @@ class PostDetail(DetailView):
         context['posts'] = Post.objects.all()
         return context
 
+class CityDetail(DetailView):
+    model = City
+    template_name = "city_detail.html"
 
