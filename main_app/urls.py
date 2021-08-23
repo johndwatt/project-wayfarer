@@ -1,12 +1,12 @@
 from django.urls import path
-from .views import CityPostDelete, Home, About, PostDetail, ProfileDetail, ProfileRedirect, CityDetail, CityPostRedirect, PostUpdate
+from .views import CityPostDelete, Home, About, PostDetail, ProfileDetail, ProfileUpdate, ProfileRedirect, CityDetail, CityPostRedirect, PostUpdate
 
 urlpatterns = [
     path('', Home.as_view(), name="home"),
     path('profile/', ProfileRedirect.as_view(), name="profile_redirect"),
     path('profile/<int:pk>/', ProfileDetail.as_view(), name="profile"),
     path('profile/<int:pk>/update/',
-         ProfileDetail.as_view(), name="profile_update"),
+         ProfileUpdate.as_view(), name="profile_update"),
     path('about/', About.as_view(), name="about"),
     path('accounts/signup/', Home.as_view(), name="signup"),
     path('post/<int:pk>/', PostDetail.as_view(), name="post_detail"),
