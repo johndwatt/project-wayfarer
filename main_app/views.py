@@ -105,8 +105,7 @@ class PostDetail(DetailView):
 
 class PostUpdate(UpdateView):
     model = Post
-    fields = ['city', 'title', 'content']
-    template_name = 'post_update.html'
+    fields = ['title', 'content']
 
     def get_success_url(self):
         return reverse("post_detail", kwargs={'pk': self.object.pk})
@@ -118,7 +117,7 @@ class CityDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['posts'] = Post.objects.all()
+        context['cities'] = City.objects.all()
         context['post_create_form'] = PostCreationForm()
         return context
 

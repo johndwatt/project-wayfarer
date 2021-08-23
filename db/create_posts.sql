@@ -5,7 +5,7 @@ to seed this data, run in terminal:
 
 INSERT INTO main_app_city(name, country, picture)
   VALUES
-    ('San Francisco', 'United States', 'https://images.unsplash.com/photo-1558150503-0fdcce137289?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=658&q=80');
+    ('San Francisco', 'United States', 'https://source.unsplash.com/LOhZNOJc3Ro');
 
 INSERT INTO main_app_post(title, content, city_id, created_at, user_id)
   VALUES
