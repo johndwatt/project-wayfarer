@@ -41,6 +41,7 @@ class Home(TemplateView):
         else:
             context = {"signup_form": form, "profile_form": profile_form}
             return render(request, "home.html", context)
+           
 
     class Meta:
         model = User
@@ -62,6 +63,8 @@ class ProfileDetail(TemplateView):
         context['posts'] = Post.objects.filter(user=self.request.user)
         return context
 
+class ProfileUpdate(UpdateView):
+
     def post(self, request, pk):
         p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
         u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -76,7 +79,7 @@ class ProfileDetail(TemplateView):
             u_form = UserUpdateForm(instance=request.user.profile)
 
             context = {"user_update_form": u_form,
-                       "profile_update_form": p_form}
+            "profile_update_form": p_form}
             return render(request, "profile.html", context)
 
 
