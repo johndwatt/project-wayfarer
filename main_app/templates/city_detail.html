@@ -13,12 +13,12 @@
         <div class="card mb-3" style="background-color: #e7c4b1;">
             <div class="row">
                 <div class="col-4 d-flex justify-content-center" style="align-items: center;">
-                    <img src="https://source.unsplash.com/LOhZNOJc3Ro" class="img-fluid my-3 mx-3 rounded" style="max-height: 100px; max-width: 100%; border-radius: 30px;" alt="{{city.name}}">
+                    <img src="{{city.image}}" class="img-fluid my-3 mx-3 rounded" style="max-height: 100px; max-width: 100%; border-radius: 30px;" alt="{{city.name}}">
                 </div>
                 <div class="col-8">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <h5 class="card-title"><a style="color: black;" href="{% url 'city_detail' city.pk %}">{{city.name}}</a></h5>
+                            <h3 class="card-title"><a style="color: black;" href="{% url 'city_detail' city.pk %}">{{city.name}}</a></h3>
                         </div>
                     </div>
                 </div>
@@ -119,10 +119,10 @@
                         <form method="post" action="{% url 'post_update' city.pk post.pk %}">
                             {% csrf_token %}
                             <div class="d-flex flex-column mb-3">
-                                <label for="title">Title</label>
+                                <label for="title">Title:</label>
                                 <input type="text" value="{{ post.title }}" name="title" class="mb-2">
-                                <label for="content">Content</label>
-                                <textarea type="text" name="content">{{ post.content }}</textarea>
+                                <label for="content">Content:</label>
+                                <textarea type="text" name="content" rows="10">{{ post.content }}</textarea>
                             </div>
                             <input type="submit" class="btn" style="background-color: #e7c4b1; border-radius: 30px;" value="Update Post"/>
                             <input type="hidden" name="text" value="{{ next }}"/>
