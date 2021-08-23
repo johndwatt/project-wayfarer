@@ -9,19 +9,21 @@
 <section>
     <div class="container" style="max-width: 1000px;">
         <div class="d-flex justify-content-between mt-5">
-            <div class="col-6" >
+            <div class="col-6">
                 <h1>{{city.name}}</h1>
                 <h3>{{city.country}}</h3>
             </div>
             <div class="col-6">
-                <img src="https://images.unsplash.com/photo-1624236028842-88acfd4e5287?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1411&q=80" class="card-img-top rounded" alt="{{city.name}}">
+                <img src="https://images.unsplash.com/photo-1624236028842-88acfd4e5287?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1411&q=80"
+                    class="card-img-top rounded" alt="{{city.name}}">
             </div>
         </div>
         <div class="col-12 d-flex justify-content-between mt-3">
             <h2>Posts</h2>
-            <button class="cust-button btn" type="submit" data-bs-toggle="modal" data-bs-target="#post-create-modal">New Post</button>
+            <button class="cust-button btn" type="submit" data-bs-toggle="modal" data-bs-target="#post-create-modal">New
+                Post</button>
         </div>
-        
+
     </div>
 
 </section>
@@ -33,23 +35,30 @@
         <div class="row d-flex justify-content-center">
             <div class="card mb-3" style="max-width: 1000px;">
                 <div class="row g-0">
-                    <div class="col-md-4 d-flex justify-content-center"  style="align-items: center;">
-                        <img src="{{post.user.profile.image}}" class="img-fluid my-3 mx-3 rounded" style="max-height: 200px; max-width: 200px;" alt="{{user.username}}">
+                    <div class="col-md-4 d-flex justify-content-center" style="align-items: center;">
+                        <img src="{{post.user.profile.image}}" class="img-fluid my-3 mx-3 rounded"
+                            style="max-height: 200px; max-width: 200px;" alt="{{user.username}}">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
-                                <h5 class="card-title"><a style="color: black;" href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h5>
-                                    <div class="btn-group">
-                                        <button type="button" class="cust-button btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                          Action
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                          <li><a class="dropdown-item" href="{% url 'post_update' post.pk %}">Edit</a></li>
-                                          <li><hr class="dropdown-divider"></li>
-                                          <li><a class="dropdown-item" href="#">Delete</a></li>
-                                        </ul>
-                                    </div>
+                                <h5 class="card-title"><a style="color: black;"
+                                        href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h5>
+                                <div class="btn-group">
+                                    <button type="button" class="cust-button btn dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Action
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'post_update' post.pk %}">Edit</a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="" data-bs-toggle="modal"
+                                                data-bs-target="#post-delete-modal-{{post.pk}}">Delete</a></li>
+                                    </ul>
+                                </div>
                             </div>
                             <p class="card-text">{{post.user}}</p>
                             <p class="card-text">{{post.content}}</p>
@@ -61,26 +70,46 @@
         </div>
     </div>
 </main>
+<div class="modal fade" id="post-delete-modal-{{post.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete {{post.title}}?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'post_delete' city.pk post.pk %}">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-danger" value="Confirm" />
+                    <input type="hidden" name="text" value="{{ next }}" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endfor %}
 
 <div class="modal fade" id="post-create-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'post_new' city.pk %}">
+                    {% csrf_token %}
+                    {{ post_create_form.as_p }}
+                    <input type="submit" class="btn" style="background-color: #e7c4b1; border-radius: 30px;"
+                        value="Create Post" />
+                    <input type="hidden" name="text" value="{{ next }}" />
+                </form>
+            </div>
         </div>
-        <div class="modal-body">
-            <form method="post" action="{% url 'post_new' city.pk %}">
-                {% csrf_token %} 
-                {{ post_create_form.as_p }}
-                <input type="submit" class="btn" style="background-color: #e7c4b1; border-radius: 30px;" value="Create Post"/>
-                <input type="hidden" name="text" value="{{ next }}"/>
-            </form>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+
 
 
 {% endblock %}
