@@ -51,6 +51,7 @@ class ProfileRedirect(View):
     def get(self, request):
         return redirect(f"/profile/{request.user.profile.pk}")
 
+
 class ProfileDetail(TemplateView):
     template_name = "profile.html"
 
@@ -98,6 +99,7 @@ class PostDetail(DetailView):
         context['posts'] = Post.objects.all()
         return context
 
+
 class PostUpdate(UpdateView):
     model = Post
     fields = ['city', 'title', 'content']
@@ -106,13 +108,14 @@ class PostUpdate(UpdateView):
     def get_success_url(self):
         return reverse("post_detail", kwargs={'pk': self.object.pk})
 
+
 class CityDetail(DetailView):
     model = City
     template_name = "city_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['posts'] = Post.objects.all()        
+        context['posts'] = Post.objects.all()
         context['post_create_form'] = PostCreationForm()
         return context
 
@@ -127,8 +130,20 @@ class CityDetail(DetailView):
 
             context = {
                 "post_create_form": post_c_form
-                }
+            }
             return render(request, "city_detail.html", context)
+
+    def delete_post(self, request, pk, post_pk):
+
+        post_to_delete = Post.objects.get(post_pk=post_pk)
+
+        if request.method == 'POST':
+            post_to_delete.delete()
+            return redirect(f'/cities/{pk}')
+
+        post_to_delete.delete()
+        return redirect(f"/cities/{pk}")
+
 
 class CityPostRedirect(View):
     def get(self, request, pk, post_pk):
