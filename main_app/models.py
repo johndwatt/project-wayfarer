@@ -18,6 +18,7 @@ class City(Model):
     name = CharField(max_length=100, default="NA")
     country = CharField(max_length=100, default="NA")
     picture = CharField(max_length=500)
+    icon = CharField(max_length=500, default="NA")
 
     def __str__(self):
         return self.name

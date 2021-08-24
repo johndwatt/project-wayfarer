@@ -4,45 +4,45 @@ to seed this data, run in terminal:
  */
 
 /* CITIES */
-INSERT INTO main_app_city(name, country, picture)
+INSERT INTO main_app_city(name, country, icon, picture)
   VALUES
-    ('San Francisco', 'United States', 'https://source.unsplash.com/LOhZNOJc3Ro');
+    ('San Francisco', 'United States', 'https://source.unsplash.com/LOhZNOJc3Ro', 'https://images.unsplash.com/photo-1624236028842-88acfd4e5287?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1411&q=80');
 
-INSERT INTO main_app_city(name, country, picture)
+INSERT INTO main_app_city(name, country, icon, picture)
   VALUES
-    ('London', 'United Kingdom', 'https://source.unsplash.com/iP8ElEhqHeY');
+    ('London', 'United Kingdom', 'https://source.unsplash.com/iP8ElEhqHeY', 'https://source.unsplash.com/ljRnNh6VJDs');
 
-INSERT INTO main_app_city(name, country, picture)
+INSERT INTO main_app_city(name, country, icon, picture)
   VALUES
-    ('Gibraltar', 'United Kingdom', 'https://source.unsplash.com/2Dq9hnPPHeg');
+    ('Gibraltar', 'United Kingdom', 'https://source.unsplash.com/2Dq9hnPPHeg', 'https://source.unsplash.com/T5ePvSRL5Hg');
 
-INSERT INTO main_app_city(name, country, picture)
+INSERT INTO main_app_city(name, country, icon, picture)
   VALUES
-    ('Madrid', 'Spain', 'https://source.unsplash.com/WBGjg0DsO_g');
+    ('Madrid', 'Spain', 'https://source.unsplash.com/WBGjg0DsO_g', 'https://source.unsplash.com/aYZr10nm0tY');
 
-INSERT INTO main_app_city(name, country, picture)
+INSERT INTO main_app_city(name, country, icon, picture)
   VALUES
-    ('Paris', 'France', 'https://source.unsplash.com/QAwciFlS1g4');
+    ('Paris', 'France', 'https://source.unsplash.com/QAwciFlS1g4', 'https://source.unsplash.com/5-cY9rWzqRo');
 
-INSERT INTO main_app_city(name, country, picture)
+INSERT INTO main_app_city(name, country, icon, picture)
   VALUES
-    ('Bejing', 'China', 'https://source.unsplash.com/ygOfAMw8_4A');
+    ('Bejing', 'China', 'https://source.unsplash.com/ygOfAMw8_4A', 'https://source.unsplash.com/3j4-YJ4L5Ig');
 
-INSERT INTO main_app_city(name, country, picture)
+INSERT INTO main_app_city(name, country, icon, picture)
   VALUES
-    ('Osaka', 'Japan', 'https://source.unsplash.com/WaHPhFveWLk');
+    ('Osaka', 'Japan', 'https://source.unsplash.com/WaHPhFveWLk', 'https://source.unsplash.com/1kHZ9IaMqXo');
 
-INSERT INTO main_app_city(name, country, picture)
+INSERT INTO main_app_city(name, country, icon, picture)
   VALUES
-    ('Abu Simbel', 'Egypt', 'https://source.unsplash.com/WaHPhFveWLk');
+    ('Abu Simbel', 'Egypt', 'https://source.unsplash.com/GNdp2Q4VZjw', 'https://source.unsplash.com/WrIUj6IdA8k');
 
-INSERT INTO main_app_city(name, country, picture)
+INSERT INTO main_app_city(name, country, icon, picture)
   VALUES
-    ('Rio de Janeiro', 'Brazil', 'https://source.unsplash.com/7F65HDP0-E0');
+    ('Rio de Janeiro', 'Brazil', 'https://source.unsplash.com/7F65HDP0-E0', 'https://source.unsplash.com/W3dfnYQ0QpY');
 
-INSERT INTO main_app_city(name, country, picture)
+INSERT INTO main_app_city(name, country, icon, picture)
   VALUES
-    ('Machu Picchu', 'Peru', 'https://source.unsplash.com/4hMET7vYTAQ');
+    ('Machu Picchu', 'Peru', 'https://source.unsplash.com/4hMET7vYTAQ', 'https://source.unsplash.com/vUl9dXccCks');
 
 /* POSTS for different cities */
 /* San Francisco */
