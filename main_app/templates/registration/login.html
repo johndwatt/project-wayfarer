@@ -1,6 +1,7 @@
 {% if form.errors %}
-<p>Username or password incorrect. Please go back and try again.
+<p style="text-align: center;">Username or password incorrect. Or you are not authorized to reach that url? Either way, please go back and try again.
 </p>
+<h3 style="text-align: center; padding-bottom: 1000px; color: blue;"><a href="{% url 'home' %}">Back to home</a></h3>
 
 {% endif %}
 
