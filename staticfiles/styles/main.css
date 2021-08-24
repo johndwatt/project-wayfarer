@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap");
+body {
+  font-family: "Signika", sans-serif;
+  background-color: #c1deba;
+  color: black;
+}
+
+.navbar {
+  background-color: #fbf3eb;
+  color: black;
+}
+.navbar .navbar-brand {
+  padding-left: 1.2em;
+  font-size: 35px;
+  color: black;
+}
+.navbar .navbar-right {
+  padding-right: 1.5em;
+}
+.navbar .nav.navbar-nav.navbar-right a {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 20px;
+  outline: none;
+  text-align: center;
+  width: 5em;
+  border-radius: 40px;
+  background: #e7c4b1;
+  color: black;
+  letter-spacing: 1px;
+  text-shadow: 0;
+  padding: 3px 4px 3px 4px;
+  text-decoration: none;
+}
+.navbar .nav.navbar-nav.navbar-right a:hover {
+  background: black;
+  color: #e7c4b1;
+  transition: 300ms ease-in-out;
+}
+
+.d-inline-block.align-text-top.logo {
+  padding-top: -10;
+  margin: -10;
+}
+
+.nav.navbar-nav.navbar-right {
+  flex-direction: row;
+}
+
+.container-md {
+  background-color: #D2E9CE;
+  padding: 15px;
+  border-radius: 30px;
+}
+
+div.modal-content {
+  background-color: #fbf3eb;
+}
+
+.cust-button.btn {
+  background-color: #e7c4b1;
+  border-radius: 30px;
+}
+
+/*# sourceMappingURL=main.css.map */

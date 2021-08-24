@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap');
+$nav-peach: #fbf3eb;
+$sapling-green:#c1deba;
+$skin-peach:#e7c4b1;
+$font:'Signika', sans-serif;
+
+body{
+    font-family: $font;
+    background-color: $sapling-green;
+    color:black;
+}
+
+.navbar{
+    
+    background-color: $nav-peach;
+    color:rgb(0, 0, 0);
+
+
+    .navbar-brand{
+        padding-left: 1.2em;
+        font-size: 35px;
+        color: black;
+    }
+
+   .navbar-right{
+       padding-right: 1.5em;
+   }
+
+   .nav.navbar-nav.navbar-right a{
+        
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 20px;
+        outline:none;
+        text-align: center;
+        width: 5em;
+        border-radius:40px;
+        background: $skin-peach;
+        
+        color:black;
+        letter-spacing:1px;
+        text-shadow:0;
+        padding: 3px 4px 3px 4px;
+        text-decoration: none;
+        
+
+        &:hover{
+            background: black;
+            color:$skin-peach;
+            transition:300ms ease-in-out;
+        }
+    }
+    
+    // .navbar-header{
+    //     padding-top: 5px;
+    // }
+}
+
+.d-inline-block.align-text-top.logo{
+    padding-top: -10;
+    margin:-10;
+}
+
+.nav.navbar-nav.navbar-right{
+    flex-direction: row;
+}
+.container-md {
+     background-color: #D2E9CE; 
+     padding: 15px;
+     border-radius: 30px;
+    
+    }
+
+div.modal-content {
+    background-color: #fbf3eb;
+}
+    
+.cust-button.btn {
+    background-color: #e7c4b1;
+    border-radius: 30px;
+}

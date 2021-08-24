@@ -1,0 +1,48 @@
+.profile-wide {
+    width: 280px;
+}
+
+div.modal-content {
+    background-color: #fbf3eb;
+}
+
+.cust-button.btn {
+    background-color: #e7c4b1;
+    border-radius: 30px;
+}
+
+@media (min-width: 400px) {
+    .profile-wide {
+        width: 334px;
+    }
+}
+
+@media (min-width: 576px) {
+    .profile-wide {
+        width: 350px;
+    }
+}
+
+@media (min-width: 768px) {
+    .profile-wide {
+        width: 400px;
+    }
+}
+
+@media (min-width: 992px) { 
+    .profile-wide {
+        width: 500px;
+    }
+}
+
+@media (min-width: 1200px) {  
+    .profile-wide {
+        width: 600px;
+    }
+}
+
+@media (min-width: 1400px) { 
+    .profile-wide {
+        width: 700px;
+    }
+}
