@@ -27,26 +27,11 @@
   <!-- navbar -->
   <nav class="navbar">
     <a class="navbar-brand" href="{% url 'home' %}">
-      <img src="http://localhost:8000/static/logo.png" width="50" height="50" class="d-inline-block align-top" alt="wayfarer logo">
+      <img src="/static/logo.png/" width="50" height="50" class="d-inline-block align-top" alt="wayfarer logo">
       Wayfarer
     </a>
 
-    <!-- <nav class="navbar">
-
-
-
-    <a class=" navbar-brand" href="{% url 'home' %}">
-      <div><img src="../static/styles/logo.png" width="30" height="30" class="d-inline-block align-top" alt="""></div>
-      </div>
-
-    
-          <div class=" title">Wayfarer</div>
-    </a> -->
-
-
-
-
-    <!-- flex me -->
+   
     {% if user.is_authenticated %}
 
     <ul class="nav navbar-nav navbar-right">
