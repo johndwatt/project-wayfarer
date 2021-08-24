@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<h1 class="m-5 mt-3">{{ user.first_name }}'s Profile</h1>
+<h1 class="m-5 mt-3">{{ profile.user.first_name }}'s Profile</h1>
 
 <!-- style="max-height: 500px; max-width: 500px;" -->
 
@@ -15,12 +15,12 @@
     <div class="col-md-6 text-center d-flex justify-content-center">
       <div class="card mb-3" style="max-width: 500px; background-color: #fbf3eb">
       <div class="text-center mt-3 mx-3">
-        <img src="{{ user.profile.image }}" class="card-img-top rounded" style="max-height: 300px; max-width: 300px;" alt="{{ user.first_name }}">
+        <img src="{{ profile.image }}" class="card-img-top rounded" style="max-height: 300px; max-width: 300px;" alt="{{ user.first_name }}">
       </div>
         <div class="card-body">
-          <h5 class="card-title">{{ user.first_name }} {{ user.last_name}}</h5>
-          <p class="card-text">Current City: {{ user.profile.current_city }}</p>
-          <p class="card-text">Joined: {{ user.date_joined|date }}</p>
+          <h5 class="card-title">{{ profile.user.first_name }} {{ profile.user.last_name}}</h5>
+          <p class="card-text">Current City: {{ profile.current_city }}</p>
+          <p class="card-text">Joined: {{ profile.user.date_joined|date }}</p>
           <a class="cust-button btn" href="#" data-bs-toggle="modal" data-bs-target="#update-modal">Update Profile</a>
         </div>
       </div>
