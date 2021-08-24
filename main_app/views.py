@@ -54,13 +54,15 @@ class ProfileRedirect(View):
 
 
 class ProfileDetail(TemplateView):
+    model = Profile
     template_name = "profile.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['user_update_form'] = UserUpdateForm()
         context['profile_update_form'] = ProfileUpdateForm()
-        context['posts'] = Post.objects.filter(user=self.request.user)
+        context['profile'] = Profile.objects.get(pk=self.kwargs.get("pk"))
+        context['posts'] = Post.objects.filter(user=self.kwargs.get("pk"))
         return context
 
 class ProfileUpdate(UpdateView):

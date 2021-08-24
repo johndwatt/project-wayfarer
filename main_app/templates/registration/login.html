@@ -6,4 +6,13 @@
     {% csrf_token %} {{ login_form.as_p }}
     <input type="submit" class="btn" style="background-color: #e7c4b1; border-radius: 30px;" value="Log In"/>
     <input type="hidden" name="text" value="{{ next }}"/>
+    {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %} 
+           <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+           </div>
+        {% endfor %}
+    {% endfor %}
+ {% endif %}
 </form>
