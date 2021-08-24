@@ -62,10 +62,10 @@
                                     <div class="d-flex justify-content-between">
                                         <h5 class="card-title"><a style="color: black;"
                                                 href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h5>
+                                        {% if post.user == user %}
                                         <div class="btn-group">
                                             <button type="button" class="cust-button btn dropdown-toggle"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                Action
+                                                data-bs-toggle="dropdown" aria-expanded="false">Menu
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="" data-bs-toggle="modal"
@@ -78,6 +78,7 @@
                                                         data-bs-target="#post-delete-modal-{{post.pk}}">Delete</a></li>
                                             </ul>
                                         </div>
+                                        {% endif %}
                                     </div>
                                     <p class="card-text"><a href="{% url 'profile' post.user.pk %}">{{post.user}}</a> - {{city.name}}</p>
                                     <p class="card-text">{{post.content}}</p>

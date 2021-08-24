@@ -21,7 +21,9 @@
           <h5 class="card-title">{{ profile.user.first_name }} {{ profile.user.last_name}}</h5>
           <p class="card-text">Current City: {{ profile.current_city }}</p>
           <p class="card-text">Joined: {{ profile.user.date_joined|date }}</p>
+          {% if profile.user == user %}
           <a class="cust-button btn" href="#" data-bs-toggle="modal" data-bs-target="#update-modal">Update Profile</a>
+          {% endif %}
         </div>
       </div>
     </div>
