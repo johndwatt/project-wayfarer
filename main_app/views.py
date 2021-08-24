@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.views import View
 from .models import User, Profile, Post, City
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.views.generic import DetailView
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
@@ -118,23 +118,33 @@ class CityDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['cities'] = City.objects.all()
-        context['post_create_form'] = PostCreationForm()
         return context
 
-    def post(self, request, pk):
-        post_c_form = PostCreationForm(request.POST)
+    # def post(self, request, pk):
+    #     post_c_form = PostCreationForm(request.POST)
 
-        if post_c_form.is_valid():
-            post_c_form.save()
+    #     if post_c_form.is_valid():
+    #         post_c_form.save()
 
-            return redirect(f"/cities/{pk}/")
-        else:
+    #         return redirect(f"/cities/{pk}/")
+    #     else:
 
-            context = {
-                "post_create_form": post_c_form
-            }
-            return render(request, "city_detail.html", context)
+    #         context = {
+    #             "post_create_form": post_c_form
+    #         }
+    #         return render(request, "city_detail.html", context)
 
+class PostCreate(CreateView):
+    model = Post
+    fields = ['title', 'content']
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.city = City.objects.get(pk=self.kwargs.get("pk"))
+        return super(PostCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse("post_detail", kwargs={'pk': self.object.pk})
 
 class CityPostDelete(View):
     def post(self, request, pk, post_pk):
