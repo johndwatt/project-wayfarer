@@ -10,6 +10,7 @@ from django import forms
 from django.contrib.auth import login
 from django.http import HttpResponse
 from .forms import UserCreationForm, ProfileForm, UserUpdateForm, ProfileUpdateForm, PostCreationForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -41,7 +42,6 @@ class Home(TemplateView):
         else:
             context = {"signup_form": form, "profile_form": profile_form}
             return render(request, "home.html", context)
-           
 
     class Meta:
         model = User
@@ -65,6 +65,7 @@ class ProfileDetail(TemplateView):
         context['posts'] = Post.objects.filter(user=self.kwargs.get("pk"))
         return context
 
+
 class ProfileUpdate(UpdateView):
 
     def post(self, request, pk):
@@ -81,7 +82,7 @@ class ProfileUpdate(UpdateView):
             u_form = UserUpdateForm(instance=request.user.profile)
 
             context = {"user_update_form": u_form,
-            "profile_update_form": p_form}
+                       "profile_update_form": p_form}
             return render(request, "profile.html", context)
 
 
@@ -136,17 +137,24 @@ class CityDetail(DetailView):
     #         }
     #         return render(request, "city_detail.html", context)
 
+
 class PostCreate(CreateView):
     model = Post
     fields = ['title', 'content']
-    
+    error_message = 'something is not right'
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.city = City.objects.get(pk=self.kwargs.get("pk"))
         return super(PostCreate, self).form_valid(form)
 
+    def form_invalid(self, form):
+        messages.error(self.request, self.error_message)
+        return super().form_invalid(form)
+
     def get_success_url(self):
         return reverse("post_detail", kwargs={'pk': self.object.pk})
+
 
 class CityPostDelete(View):
     def post(self, request, pk, post_pk):
