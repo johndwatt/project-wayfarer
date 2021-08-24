@@ -31,7 +31,7 @@
       Wayfarer
     </a>
 
-   
+
     {% if user.is_authenticated %}
 
     <ul class="nav navbar-nav navbar-right">
@@ -68,6 +68,9 @@
             <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+          {% if form.errors %}
+          <p>{{error}}</p>
+          {% endif %}
           <div class="modal-body">
             {% include "registration/login.html" %}
           </div>
