@@ -6,11 +6,12 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView, CreateView
 from django.views.generic import DetailView
 from django.contrib.auth.forms import AuthenticationForm
-from django import forms
 from django.contrib.auth import login
-from django.http import HttpResponse
-from .forms import UserCreationForm, ProfileForm, UserUpdateForm, ProfileUpdateForm, PostCreationForm
+from .forms import UserCreationForm, ProfileForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
+
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 # Create your views here.
@@ -47,12 +48,12 @@ class Home(TemplateView):
         model = User
         fields = ("username", "email", "password1", "password2")
 
-
+@method_decorator(login_required, name='dispatch')
 class ProfileRedirect(View):
     def get(self, request):
         return redirect(f"/profile/{request.user.profile.pk}")
 
-
+@method_decorator(login_required, name='dispatch')
 class ProfileDetail(TemplateView):
     model = Profile
     template_name = "profile.html"
@@ -65,7 +66,7 @@ class ProfileDetail(TemplateView):
         context['posts'] = Post.objects.filter(user=self.kwargs.get("pk"))
         return context
 
-
+@method_decorator(login_required, name='dispatch')
 class ProfileUpdate(UpdateView):
 
     def post(self, request, pk):
@@ -95,7 +96,7 @@ class About(TemplateView):
         context['signup_form'] = UserCreationForm()
         return context
 
-
+@method_decorator(login_required, name='dispatch')
 class PostDetail(DetailView):
     model = Post
     template_name = "post_detail.html"
@@ -105,7 +106,7 @@ class PostDetail(DetailView):
         context['posts'] = Post.objects.all()
         return context
 
-
+@method_decorator(login_required, name='dispatch')
 class PostUpdate(UpdateView):
     model = Post
     fields = ['title', 'content']
@@ -113,7 +114,7 @@ class PostUpdate(UpdateView):
     def get_success_url(self):
         return reverse("post_detail", kwargs={'pk': self.object.pk})
 
-
+@method_decorator(login_required, name='dispatch')
 class CityDetail(DetailView):
     model = City
     template_name = "city_detail.html"
@@ -123,21 +124,7 @@ class CityDetail(DetailView):
         context['cities'] = City.objects.all()
         return context
 
-    # def post(self, request, pk):
-    #     post_c_form = PostCreationForm(request.POST)
-
-    #     if post_c_form.is_valid():
-    #         post_c_form.save()
-
-    #         return redirect(f"/cities/{pk}/")
-    #     else:
-
-    #         context = {
-    #             "post_create_form": post_c_form
-    #         }
-    #         return render(request, "city_detail.html", context)
-
-
+@method_decorator(login_required, name='dispatch')
 class PostCreate(CreateView):
     model = Post
     fields = ['title', 'content']
@@ -155,14 +142,14 @@ class PostCreate(CreateView):
     def get_success_url(self):
         return reverse("post_detail", kwargs={'pk': self.object.pk})
 
-
+@method_decorator(login_required, name='dispatch')
 class CityPostDelete(View):
     def post(self, request, pk, post_pk):
         post_to_delete = Post.objects.get(id=post_pk)
         post_to_delete.delete()
         return redirect(f'/cities/{pk}/')
 
-
+@method_decorator(login_required, name='dispatch')
 class CityPostRedirect(View):
     def get(self, request, pk, post_pk):
         return redirect("post_detail", pk=post_pk)
